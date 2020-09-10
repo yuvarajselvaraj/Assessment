@@ -9,4 +9,5 @@ public List<AssesmentProperties> getAllAssesment();
 public AssesmentProperties getAssesmentById(Long AssesssmentId);
 public AssesmentProperties createOrUpdateAssesment(AssesmentProperties properties);
 public void deleteById(Long AssessmentId);
+
 }
