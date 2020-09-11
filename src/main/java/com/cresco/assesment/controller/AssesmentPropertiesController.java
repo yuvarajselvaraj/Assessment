@@ -56,5 +56,10 @@ public HttpStatus deleteproperty(@PathVariable("AssesmentId") Long id)
 	properties.deleteById(id);
 	return HttpStatus.ACCEPTED;
 }
-
+@RequestMapping(value="/Assesment/{AssesmentName}",method=RequestMethod.GET)
+public ResponseEntity<Long> getproperty(@PathVariable("AssesmentName")String AssessmentName)
+{
+	Long model=properties.getAssessmentid(AssessmentName);
+	return new ResponseEntity<Long>(model,new HttpHeaders(), HttpStatus.OK);
+}
 }

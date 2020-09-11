@@ -11,4 +11,5 @@ public AssesmentProperties getAssesmentById(Long AssesssmentId);
 public AssesmentProperties createOrUpdateAssesment(AssesmentProperties properties);
 public void deleteById(Long AssessmentId);
 public List<GetAll> getalldetails();
+public Long getAssessmentid(String AssessmentName);
 }

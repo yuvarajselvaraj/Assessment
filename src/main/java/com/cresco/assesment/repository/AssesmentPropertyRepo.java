@@ -15,6 +15,7 @@ import com.cresco.assesment.model.AssesmentProperties;
 import com.cresco.assesment.model.GetAll;
 @Repository
 public interface AssesmentPropertyRepo extends JpaRepository<AssesmentProperties,Long> {
-	
+	@Query(value="select assessment_id from assessment where assessment_name=?1",nativeQuery=true)
+	Long getidbyname(String AssessmentName);
 	
 }

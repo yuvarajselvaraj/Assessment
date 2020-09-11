@@ -76,4 +76,11 @@ public List<GetAll> getalldetails() {
 	
 	return repo1.getalltables();
 }
+
+@Override
+public Long getAssessmentid(String AssessmentName) {
+	// TODO Auto-generated method stub
+	Long id=repo.getidbyname(AssessmentName);
+	return id;
+}
 }
