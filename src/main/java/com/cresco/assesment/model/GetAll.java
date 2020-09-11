@@ -23,39 +23,50 @@ import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 })
 public class GetAll {
 	@Id
-private int assessment_id;
-private int assessment_noofsections;
+	@Column(nullable=true)
+private Long assessment_id;
+private Long assessment_noofsections;
 private String assessment_specialization;
 private String assessment_level;
 private String assessment_name;
 private String assessment_keywords;
 private String assessment_role;
-private int assessment_time;
-private int section_id;
-private int section_noofquestions;
-private int section_no;
+private Long assessment_time;
+
+private Long section_id;
+
+private Long section_noofquestions;
+
+private Long section_no;
 private String section_type;
-private int section_time;
-private int section_weightage;
-private int question_id;
+
+private Long section_time;
+//@Column(nullable=true)
+private Long section_weightage;
+//@Column(nullable=true)
+private Long question_id;
 private String question_answertype;
 @Type(type = "jsonb")
 @Column(columnDefinition="json")
 private Logic question_logicjump;
-private int question_noofoptions;
+//@Column(nullable=true)
+private Long question_noofoptions;
 @Type(type = "jsonb")
 @Column(columnDefinition="json")
 private QOptions question_options;
-private int question_no;
+//@Column(nullable=true)
+private Long question_no;
 private String question_type;
 @Type(type = "jsonb")
 @Column(columnDefinition="json")
 private Score question_score;
-private int question_timer;
+//@Column(nullable=true)
+private Long question_timer;
 @Type(type = "jsonb")
 @Column(columnDefinition="json")
 private Optionjson accessbility;
-private int accessbility_negativemark;
+//@Column(nullable=true)
+private Long accessbility_negativemark;
 @Type(type = "jsonb")
 @Column(columnDefinition="json")
 private Optionjson display_objectjson;
@@ -65,22 +76,23 @@ private String proctor_alert;
 private String server_issue;
 private String webcam_issue;
 private String shortcut;
-private int shortcut_noofoptions;
+private Long shortcut_noofoptions;
 @Type(type = "jsonb")
 @Column(columnDefinition="json")
 private QOptions shortcut_options;
-private int themes;
+//@Column(nullable=true)
+private Long themes;
 private String modes;
-public int getAssessment_id() {
+public Long getAssessment_id() {
 	return assessment_id;
 }
-public void setAssessment_id(int assessment_id) {
+public void setAssessment_id(Long assessment_id) {
 	this.assessment_id = assessment_id;
 }
-public int getAssessment_noofsections() {
+public Long getAssessment_noofsections() {
 	return assessment_noofsections;
 }
-public void setAssessment_noofsections(int assessment_noofsections) {
+public void setAssessment_noofsections(Long assessment_noofsections) {
 	this.assessment_noofsections = assessment_noofsections;
 }
 public String getAssessment_specialization() {
@@ -113,28 +125,28 @@ public String getAssessment_role() {
 public void setAssessment_role(String assessment_role) {
 	this.assessment_role = assessment_role;
 }
-public int getAssessment_time() {
+public Long getAssessment_time() {
 	return assessment_time;
 }
-public void setAssessment_time(int assessment_time) {
+public void setAssessment_time(Long assessment_time) {
 	this.assessment_time = assessment_time;
 }
-public int getSection_id() {
+public Long getSection_id() {
 	return section_id;
 }
-public void setSection_id(int section_id) {
+public void setSection_id(Long section_id) {
 	this.section_id = section_id;
 }
-public int getSection_noofquestions() {
+public Long getSection_noofquestions() {
 	return section_noofquestions;
 }
-public void setSection_noofquestions(int section_noofquestions) {
+public void setSection_noofquestions(Long section_noofquestions) {
 	this.section_noofquestions = section_noofquestions;
 }
-public int getSection_no() {
+public Long getSection_no() {
 	return section_no;
 }
-public void setSection_no(int section_no) {
+public void setSection_no(Long section_no) {
 	this.section_no = section_no;
 }
 public String getSection_type() {
@@ -143,22 +155,22 @@ public String getSection_type() {
 public void setSection_type(String section_type) {
 	this.section_type = section_type;
 }
-public int getSection_time() {
+public Long getSection_time() {
 	return section_time;
 }
-public void setSection_time(int section_time) {
+public void setSection_time(Long section_time) {
 	this.section_time = section_time;
 }
-public int getSection_weightage() {
+public Long getSection_weightage() {
 	return section_weightage;
 }
-public void setSection_weightage(int section_weightage) {
+public void setSection_weightage(Long section_weightage) {
 	this.section_weightage = section_weightage;
 }
-public int getQuestion_id() {
+public Long getQuestion_id() {
 	return question_id;
 }
-public void setQuestion_id(int question_id) {
+public void setQuestion_id(Long question_id) {
 	this.question_id = question_id;
 }
 public String getQuestion_answertype() {
@@ -173,10 +185,10 @@ public Logic getQuestion_logicjump() {
 public void setQuestion_logicjump(Logic question_logicjump) {
 	this.question_logicjump = question_logicjump;
 }
-public int getQuestion_noofoptions() {
+public Long getQuestion_noofoptions() {
 	return question_noofoptions;
 }
-public void setQuestion_noofoptions(int question_noofoptions) {
+public void setQuestion_noofoptions(Long question_noofoptions) {
 	this.question_noofoptions = question_noofoptions;
 }
 public QOptions getQuestion_options() {
@@ -185,10 +197,10 @@ public QOptions getQuestion_options() {
 public void setQuestion_options(QOptions question_options) {
 	this.question_options = question_options;
 }
-public int getQuestion_no() {
+public Long getQuestion_no() {
 	return question_no;
 }
-public void setQuestion_no(int question_no) {
+public void setQuestion_no(Long question_no) {
 	this.question_no = question_no;
 }
 public String getQuestion_type() {
@@ -197,17 +209,16 @@ public String getQuestion_type() {
 public void setQuestion_type(String question_type) {
 	this.question_type = question_type;
 }
-
 public Score getQuestion_score() {
 	return question_score;
 }
 public void setQuestion_score(Score question_score) {
 	this.question_score = question_score;
 }
-public int getQuestion_timer() {
+public Long getQuestion_timer() {
 	return question_timer;
 }
-public void setQuestion_timer(int question_timer) {
+public void setQuestion_timer(Long question_timer) {
 	this.question_timer = question_timer;
 }
 public Optionjson getAccessbility() {
@@ -216,10 +227,10 @@ public Optionjson getAccessbility() {
 public void setAccessbility(Optionjson accessbility) {
 	this.accessbility = accessbility;
 }
-public int getAccessbility_negativemark() {
+public Long getAccessbility_negativemark() {
 	return accessbility_negativemark;
 }
-public void setAccessbility_negativemark(int accessbility_negativemark) {
+public void setAccessbility_negativemark(Long accessbility_negativemark) {
 	this.accessbility_negativemark = accessbility_negativemark;
 }
 public Optionjson getDisplay_objectjson() {
@@ -264,10 +275,10 @@ public String getShortcut() {
 public void setShortcut(String shortcut) {
 	this.shortcut = shortcut;
 }
-public int getShortcut_noofoptions() {
+public Long getShortcut_noofoptions() {
 	return shortcut_noofoptions;
 }
-public void setShortcut_noofoptions(int shortcut_noofoptions) {
+public void setShortcut_noofoptions(Long shortcut_noofoptions) {
 	this.shortcut_noofoptions = shortcut_noofoptions;
 }
 public QOptions getShortcut_options() {
@@ -276,10 +287,10 @@ public QOptions getShortcut_options() {
 public void setShortcut_options(QOptions shortcut_options) {
 	this.shortcut_options = shortcut_options;
 }
-public int getThemes() {
+public Long getThemes() {
 	return themes;
 }
-public void setThemes(int themes) {
+public void setThemes(Long themes) {
 	this.themes = themes;
 }
 public String getModes() {
