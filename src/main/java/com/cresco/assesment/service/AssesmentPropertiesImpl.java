@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cresco.assesment.model.AssesmentProperties;
+import com.cresco.assesment.model.GetAll;
 import com.cresco.assesment.repository.AssesmentPropertyRepo;
+import com.cresco.assesment.repository.GetAllrepo;
 
 @Service
 public class AssesmentPropertiesImpl  implements AssesmentPropertiesService{
 @Autowired
 AssesmentPropertyRepo repo;
-
+@Autowired
+GetAllrepo repo1;
 @Override
 public List<AssesmentProperties> getAllAssesment() {
 	List<AssesmentProperties> properties=repo.findAll();
@@ -65,5 +68,12 @@ public void deleteById(Long AssessmentId) {
 		
 	}
 	
+}
+
+@Override
+public List<GetAll> getalldetails() {
+	// TODO Auto-generated method stub
+	
+	return repo1.getalltables();
 }
 }
