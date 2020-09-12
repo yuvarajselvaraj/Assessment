@@ -45,10 +45,10 @@ public ResponseEntity<AssesmentProperties> getproperty(@PathVariable("AssesmentI
 	return new ResponseEntity<AssesmentProperties>(model,new HttpHeaders(), HttpStatus.OK);
 }
 @RequestMapping(value="/AssesmentProperty",method=RequestMethod.POST)
-public ResponseEntity<AssesmentProperties> createOrUpdateoptions(@RequestBody AssesmentProperties model)
+public ResponseEntity<Long> createOrUpdateoptions(@RequestBody AssesmentProperties model)
 {
 	AssesmentProperties updated=properties.createOrUpdateAssesment(model);
-	return new ResponseEntity<AssesmentProperties>(updated,new HttpHeaders(),HttpStatus.OK);
+	return new ResponseEntity<Long>(updated.getAssessment_id(),new HttpHeaders(),HttpStatus.OK);
 }
 @RequestMapping(value="/AssesmentProperty/{AssesmentId}",method=RequestMethod.DELETE)
 public HttpStatus deleteproperty(@PathVariable("AssesmentId") Long id)
