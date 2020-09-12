@@ -15,7 +15,15 @@ import com.cresco.assesment.model.SectionProperties;
 public interface SectionPropertiesRepo extends JpaRepository<SectionProperties,Long > {
 	@Query(value="select * from section where assessment_id=?1",nativeQuery=true)
 	List<SectionProperties> findByassessmentid(Long id);
-
+	/*@Transactional
+	@Modifying
+	@Query(value="update set section_no=")*/
+@Query(value="select max(section_no)+1 from section where assessment_id=?1",nativeQuery=true)
+Long getnobyid(Long assessment_id);
+@Transactional
+@Modifying
+@Query(value="update section set section_no=?1  where section_id=?2",nativeQuery=true)
+void updateafterinsert(Long section_no,Long section_id);
 @Transactional
 @Modifying
 @Query(value="UPDATE section SET section_no=section_no-1 where assessment_id=?1 and section_no>?2",nativeQuery=true)

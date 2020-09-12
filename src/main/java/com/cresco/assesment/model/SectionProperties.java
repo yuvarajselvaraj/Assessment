@@ -1,5 +1,6 @@
 package com.cresco.assesment.model;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 @Entity
@@ -17,6 +19,7 @@ public class SectionProperties {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long section_id;
+	@Column( columnDefinition = "bigint default 0")
 	private Long section_no;
 	@ManyToOne
 	@JoinColumn(name="assessment_id")

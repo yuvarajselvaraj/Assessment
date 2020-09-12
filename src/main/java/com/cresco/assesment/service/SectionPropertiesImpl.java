@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.cresco.assesment.model.SectionProperties;
 import com.cresco.assesment.repository.SectionPropertiesRepo;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 @Service
 public class SectionPropertiesImpl implements SectionPropertiesService {
 @Autowired
@@ -32,8 +34,16 @@ SectionPropertiesRepo repo;
 	public SectionProperties createOrUpdateSections(SectionProperties properties) {
 		// TODO Auto-generated method stub
 		
-		
+		    if(properties.getSection_no()==null)
+		    {
+		    	properties.setSection_no((long) 0);
+		    }
 			SectionProperties model=repo.save(properties);
+			System.out.print("hi");
+			Long no=repo.getnobyid(model.getForeign_key().getAssessment_id());
+			System.out.println(no);
+			System.out.print("hi");
+			repo.updateafterinsert(no,model.getSection_id() );
 			return model;
 	}
 

@@ -15,6 +15,12 @@ public class ThemeSettings {
 	private String modes;
 	private int Themes;
 	
+	public PrimaryKey getPrimaryKey() {
+		return primaryKey;
+	}
+	public void setPrimaryKey(PrimaryKey primaryKey) {
+		this.primaryKey = primaryKey;
+	}
 	public String getModes() {
 		return modes;
 	}
