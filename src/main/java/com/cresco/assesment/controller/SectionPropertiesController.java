@@ -42,10 +42,10 @@ public ResponseEntity<List<SectionProperties>> getproperty(@PathVariable("Assess
 	return new ResponseEntity<List<SectionProperties>>(model,new HttpHeaders(), HttpStatus.OK);
 }
 @RequestMapping(value="/SectionProperty",method=RequestMethod.POST)
-public ResponseEntity<SectionProperties> createOrUpdateoptions(@RequestBody SectionProperties model)
+public ResponseEntity<Long> createOrUpdateoptions(@RequestBody SectionProperties model)
 {
 	SectionProperties updated=properties.createOrUpdateSections(model);
-	return new ResponseEntity<SectionProperties>(updated,new HttpHeaders(),HttpStatus.OK);
+	return new ResponseEntity<Long>(updated.getSection_id(),new HttpHeaders(),HttpStatus.OK);
 }
 @RequestMapping(value="/SectionProperty/{SectionId}",method=RequestMethod.DELETE)
 public HttpStatus deleteproperty(@PathVariable("SectionId") Long section)

@@ -29,8 +29,13 @@ QuestionPropertiesRepo repo;
 	@Override
 	public QuestionProperties createOrUpdateQuestionProp(QuestionProperties properties) {
 		// TODO Auto-generated method stub
-		
+		if(properties.getQuestion_no()==null)
+		{
+			properties.setQuestion_no((long) 0);
+		}
 			QuestionProperties model=repo.save(properties);
+			Long no=repo.getnobyid(model.getForeign_key2().getSection_id());
+			repo.updateafterinsert(no, model.getQuestion_id());
 			return model;
 		
 	}
