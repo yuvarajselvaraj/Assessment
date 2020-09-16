@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 @Table(name="section")
 public class SectionProperties {
@@ -32,9 +34,9 @@ public class SectionProperties {
 	public Long getSection_id() {
 		return section_id;
 	}
-	/*public void setSection_id(Long section_id) {
+	public void setSection_id(Long section_id) {
 		this.section_id = section_id;
-	}*/
+	}
 	public AssesmentProperties getForeign_key() {
 		return foreign_key;
 	}

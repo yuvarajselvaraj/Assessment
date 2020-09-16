@@ -1,20 +1,16 @@
-package com.cresco.assesment.model;
+package com.cresco.assesment.model.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="assessment")
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 
-	public class AssesmentProperties {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+
+public class Assesment {
 	private Long assessment_id;
-	@Column(unique=true,nullable=false)
 	private String assessment_name;
 	private String assessment_level;
 	private String Specialization;
@@ -22,12 +18,7 @@ import javax.persistence.Table;
 	private String keywords;
 	private String role;
 	private int No_of_sections;
-	public Long getAssessment_id() {
-		return assessment_id;
-	}
-	public void setAssessment_id(Long assessment_id) {
-		this.assessment_id = assessment_id;
-	}
+	
 	public String getAssessment_name() {
 		return assessment_name;
 	}
@@ -58,19 +49,17 @@ import javax.persistence.Table;
 	public void setKeywords(String keywords) {
 		this.keywords = keywords;
 	}
-	public int getNo_of_sections() {
-		return No_of_sections;
-	}
-	public void setNo_of_sections(int no_of_sections) {
-		No_of_sections = no_of_sections;
-	}
 	public String getRole() {
 		return role;
 	}
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
-	
+	public int getNo_of_sections() {
+		return No_of_sections;
+	}
+	public void setNo_of_sections(int no_of_sections) {
+		No_of_sections = no_of_sections;
+	}
 	
 }

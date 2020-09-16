@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cresco.assesment.model.AssesmentProperties;
+import com.cresco.assesment.model.models.Assesment;
 import com.cresco.assesment.service.AssesmentPropertiesImpl;
 
 @RestController
@@ -45,10 +46,21 @@ public ResponseEntity<AssesmentProperties> getproperty(@PathVariable("AssesmentI
 	return new ResponseEntity<AssesmentProperties>(model,new HttpHeaders(), HttpStatus.OK);
 }
 @RequestMapping(value="/AssesmentProperty",method=RequestMethod.POST)
-public ResponseEntity<Long> createOrUpdateoptions(@RequestBody AssesmentProperties model)
+public ResponseEntity<List<Long>> createOrUpdateoptions(@RequestBody Assesment model)
 {
-	AssesmentProperties updated=properties.createOrUpdateAssesment(model);
-	return new ResponseEntity<Long>(updated.getAssessment_id(),new HttpHeaders(),HttpStatus.OK);
+	AssesmentProperties prop=new AssesmentProperties();
+	prop.setAssessment_level(model.getAssessment_level());
+	prop.setAssessment_name(model.getAssessment_name());
+	prop.setKeywords(model.getKeywords());
+	prop.setNo_of_sections(model.getNo_of_sections());
+	prop.setRole(model.getRole());
+	prop.setSpecialization(model.getRole());
+	prop.setTime(model.getTime());
+	AssesmentProperties updated=properties.createOrUpdateAssesment(prop);
+	List<Long> n=new ArrayList<Long>();
+	n.add(updated.getAssessment_id());
+	n.add((long) updated.getNo_of_sections());
+	return new ResponseEntity<List<Long>>(n,new HttpHeaders(),HttpStatus.OK);
 }
 @RequestMapping(value="/AssesmentProperty/{AssesmentId}",method=RequestMethod.DELETE)
 public HttpStatus deleteproperty(@PathVariable("AssesmentId") Long id)
@@ -56,10 +68,14 @@ public HttpStatus deleteproperty(@PathVariable("AssesmentId") Long id)
 	properties.deleteById(id);
 	return HttpStatus.ACCEPTED;
 }
-@RequestMapping(value="/Assesment/{AssesmentName}",method=RequestMethod.GET)
-public ResponseEntity<Long> getproperty(@PathVariable("AssesmentName")String AssessmentName)
+@RequestMapping(value="/AssesmentProperty/{AssessmentId}",method=RequestMethod.PUT)
+public ResponseEntity<List<Long>> Updateoptions(@RequestBody AssesmentProperties model,@PathVariable("AssessmentId") Long id)
 {
-	Long model=properties.getAssessmentid(AssessmentName);
-	return new ResponseEntity<Long>(model,new HttpHeaders(), HttpStatus.OK);
+	model.setAssessment_id(id);
+	AssesmentProperties updated=properties.createOrUpdateAssesment(model);
+	List<Long> n=new ArrayList<Long>();
+	n.add(updated.getAssessment_id());
+	n.add((long) updated.getNo_of_sections());
+	return new ResponseEntity<List<Long>>(n,new HttpHeaders(),HttpStatus.OK);
 }
 }

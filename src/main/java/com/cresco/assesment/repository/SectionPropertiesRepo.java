@@ -22,6 +22,22 @@ public interface SectionPropertiesRepo extends JpaRepository<SectionProperties,L
 Long getnobyid(Long assessment_id);
 @Transactional
 @Modifying
+@Query(value="do $$\r\n" + 
+		"declare\r\n" + 
+		"	n integer:=1;\r\n" + 
+		"begin\r\n" + 
+		"	loop\r\n" + 
+		"		exit when n>?1;\r\n" + 
+		"		if(n<=?1) then\r\n" + 
+		"			insert into question_prop(answer_type,logic_jump,no_of_options,options,question_no,question_q,question_type,score,timer,assessment_id,section_id)  \r\n" + 
+		"			values(null,null,null,null,n,null,null,null,null,?2,?3);\r\n" + 
+		"		end if;\r\n" + 
+		"		n:=n+1;\r\n" + 
+		"	end loop;\r\n" + 
+		"end;$$",nativeQuery=true)
+void populatequestion(Long noofquestions,Long assessmentid,Long sectionid);
+@Transactional
+@Modifying
 @Query(value="update section set section_no=?1  where section_id=?2",nativeQuery=true)
 void updateafterinsert(Long section_no,Long section_id);
 @Transactional

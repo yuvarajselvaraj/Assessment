@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cresco.assesment.model.AssesmentProperties;
 import com.cresco.assesment.model.SectionProperties;
+import com.cresco.assesment.model.models.Section;
 import com.cresco.assesment.service.SectionPropertiesImpl;
 
 @RestController
@@ -42,9 +44,18 @@ public ResponseEntity<List<SectionProperties>> getproperty(@PathVariable("Assess
 	return new ResponseEntity<List<SectionProperties>>(model,new HttpHeaders(), HttpStatus.OK);
 }
 @RequestMapping(value="/SectionProperty",method=RequestMethod.POST)
-public ResponseEntity<Long> createOrUpdateoptions(@RequestBody SectionProperties model)
+public ResponseEntity<Long> createOrUpdateoptions(@RequestBody Section model)
 {
-	SectionProperties updated=properties.createOrUpdateSections(model);
+	SectionProperties model1=new SectionProperties();
+	AssesmentProperties property=new AssesmentProperties();
+	property.setAssessment_id(model.getAssessment_id());
+model1.setForeign_key(property);
+	model1.setSection_no(model.getSection_no());
+	model1.setNo_of_questions(model.getNo_of_questions());
+	model1.setSection_type(model.getSection_type());
+	model1.setTime(model.getTime());
+	model1.setWeightage(model.getWeightage());
+	SectionProperties updated=properties.createOrUpdateSections(model1);
 	return new ResponseEntity<Long>(updated.getSection_id(),new HttpHeaders(),HttpStatus.OK);
 }
 @RequestMapping(value="/SectionProperty/{SectionId}",method=RequestMethod.DELETE)
@@ -54,5 +65,21 @@ public HttpStatus deleteproperty(@PathVariable("SectionId") Long section)
 	
 	properties.deleteBySectionAndName(section);
 	return HttpStatus.ACCEPTED;
+}
+@RequestMapping(value="/SectionProperty/{SectionId}",method=RequestMethod.PUT)
+public ResponseEntity<Long> Updateoptions(@RequestBody Section model,@PathVariable ("SectionId") Long id)
+{
+	SectionProperties model1=new SectionProperties();
+	AssesmentProperties property=new AssesmentProperties();
+	property.setAssessment_id(model.getAssessment_id());
+model1.setForeign_key(property);
+	model1.setSection_no(model.getSection_no());
+	model1.setNo_of_questions(model.getNo_of_questions());
+	model1.setSection_type(model.getSection_type());
+	model1.setTime(model.getTime());
+	model1.setWeightage(model.getWeightage());
+	model1.setSection_id(id);
+	SectionProperties updated=properties.createOrUpdateSections(model1);
+	return new ResponseEntity<Long>(updated.getSection_id(),new HttpHeaders(),HttpStatus.OK);
 }
 }

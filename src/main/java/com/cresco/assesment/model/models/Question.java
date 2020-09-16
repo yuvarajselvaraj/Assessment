@@ -1,66 +1,35 @@
-package com.cresco.assesment.model;
-
-import java.io.Serializable;
+package com.cresco.assesment.model.models;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
 
 import com.cresco.assesment.json.Logic;
 import com.cresco.assesment.json.QOptions;
 import com.cresco.assesment.json.Score;
-import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-@Entity
-@TypeDefs({
-    @TypeDef(name = "jsonb", typeClass =JsonBinaryType.class)
-    		
-})
-@Table(name="QuestionProp")
-public class QuestionProperties implements Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long question_id;
+public class Question {
+	private Long question_id;
 	private String question_type;
 	private String answer_type;
 	private Long no_of_options;
-	@Type(type = "jsonb")
-	@Column(columnDefinition="json")
+	
 	private Score score;
 	private Long timer;
-	@Type(type = "jsonb")
-	@Column(columnDefinition="json")
+	
 	private Logic logic_jump;
 	private String question_q;
-	@Type(type = "jsonb")
-	@Column(columnDefinition="json")
+
 	private QOptions options;
 	private Long question_no;
-	@ManyToOne
-	@JoinColumn(name="assessment_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private AssesmentProperties foreign_key1;
-	@ManyToOne
-	@JoinColumn(name="section_id")
-	@OnDelete(action=OnDeleteAction.CASCADE)
-	private SectionProperties foreign_key2;
+	private Long assessment_id;
+	private Long section_id;
 	public Long getQuestion_id() {
 		return question_id;
 	}
-	/*public void setQuestion_id(Long question_id) {
+	public void setQuestion_id(Long question_id) {
 		this.question_id = question_id;
-	}*/
+	}
 	public String getQuestion_type() {
 		return question_type;
 	}
@@ -115,20 +84,17 @@ public class QuestionProperties implements Serializable {
 	public void setQuestion_no(Long question_no) {
 		this.question_no = question_no;
 	}
-	public AssesmentProperties getForeign_key1() {
-		return foreign_key1;
+	public Long getAssessment_id() {
+		return assessment_id;
 	}
-	public void setForeign_key1(AssesmentProperties foreign_key1) {
-		this.foreign_key1 = foreign_key1;
+	public void setAssessment_id(Long assessment_id) {
+		this.assessment_id = assessment_id;
 	}
-	public SectionProperties getForeign_key2() {
-		return foreign_key2;
+	public Long getSection_id() {
+		return section_id;
 	}
-	public void setForeign_key2(SectionProperties foreign_key2) {
-		this.foreign_key2 = foreign_key2;
-	}
-	public void setQuestion_id(Long question_id) {
-		this.question_id = question_id;
+	public void setSection_id(Long section_id) {
+		this.section_id = section_id;
 	}
 	
 }
