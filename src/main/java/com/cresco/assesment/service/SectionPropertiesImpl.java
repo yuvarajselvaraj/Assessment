@@ -40,13 +40,14 @@ QuestionPropertiesRepo repo1;
 		    if( properties.getSection_id()==null)
 		    {
 		    	properties.setSection_no((long) 0);
+		    	
 		    	SectionProperties model=repo.save(properties);
-				Long no=repo.getnobyid(model.getForeign_key().getAssessment_id());
+		    	Long no=repo.getnobyid(model.getForeign_key().getAssessment_id());
 			
 				System.out.println(model.getNo_of_questions());
 				System.out.println(model.getForeign_key().getAssessment_id());
 				System.out.println(model.getSection_id());
-				//repo.updateafterinsert(no,model.getSection_id() );
+				repo.updateafterinsert(no,model.getSection_id() );
 				for(int i=1;i<=model.getNo_of_questions();i++)
 				{
 					repo1.populatequestion( (long)i,model.getForeign_key().getAssessment_id(),model.getSection_id());
