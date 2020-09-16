@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cresco.assesment.model.SectionProperties;
+import com.cresco.assesment.repository.QuestionPropertiesRepo;
 import com.cresco.assesment.repository.SectionPropertiesRepo;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
@@ -15,6 +16,8 @@ import ch.qos.logback.core.net.SyslogOutputStream;
 public class SectionPropertiesImpl implements SectionPropertiesService {
 @Autowired
 SectionPropertiesRepo repo;
+@Autowired
+QuestionPropertiesRepo repo1;
 	@Override
 	public List<SectionProperties> getAllSections() {
 		// TODO Auto-generated method stub
@@ -34,16 +37,21 @@ SectionPropertiesRepo repo;
 	public SectionProperties createOrUpdateSections(SectionProperties properties) {
 		// TODO Auto-generated method stub
 		
-		    if(properties.getSection_no()==null && properties.getSection_id()==null)
+		    if( properties.getSection_id()==null)
 		    {
 		    	properties.setSection_no((long) 0);
 		    	SectionProperties model=repo.save(properties);
-				System.out.print("hi");
 				Long no=repo.getnobyid(model.getForeign_key().getAssessment_id());
-				System.out.println(no);
-				System.out.print("hi");
-				repo.updateafterinsert(no,model.getSection_id() );
-				repo.populatequestion((long) model.getNo_of_questions(), model.getForeign_key().getAssessment_id(),model.getSection_id());
+			
+				System.out.println(model.getNo_of_questions());
+				System.out.println(model.getForeign_key().getAssessment_id());
+				System.out.println(model.getSection_id());
+				//repo.updateafterinsert(no,model.getSection_id() );
+				for(int i=1;i<=model.getNo_of_questions();i++)
+				{
+					repo1.populatequestion( (long)i,model.getForeign_key().getAssessment_id(),model.getSection_id());
+				}
+				
 				return model;
 				
 		    }

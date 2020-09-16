@@ -24,4 +24,11 @@ public interface QuestionPropertiesRepo extends JpaRepository<QuestionProperties
 void UpdateAfterDelete(Long assessmentId, Long section, Long questionno);
 @Query(value="select * from question_prop where assessment_id=?1 and section_id=?2",nativeQuery=true)
 List<QuestionProperties> getbyids(Long assessment_id,Long section_id);
+@Transactional
+@Modifying
+@Query(value= 
+		"			insert into question_prop(answer_type,logic_jump,no_of_options,options,question_no,question_q,question_type,score,timer,assessment_id,section_id)  \r\n" + 
+		"			values(null,null,null,null,?1,null,null,null,null,?2,?3);\r\n" 
+		,nativeQuery=true)
+void populatequestion(Long noofquestions,Long assessmentid,Long sectionid);
 }

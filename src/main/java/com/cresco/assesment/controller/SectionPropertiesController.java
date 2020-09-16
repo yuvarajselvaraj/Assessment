@@ -53,6 +53,7 @@ model1.setForeign_key(property);
 	model1.setSection_no(model.getSection_no());
 	model1.setNo_of_questions(model.getNo_of_questions());
 	model1.setSection_type(model.getSection_type());
+	model1.setSection_no(model.getSection_no());
 	model1.setTime(model.getTime());
 	model1.setWeightage(model.getWeightage());
 	SectionProperties updated=properties.createOrUpdateSections(model1);
@@ -73,6 +74,7 @@ public ResponseEntity<Long> Updateoptions(@RequestBody Section model,@PathVariab
 	AssesmentProperties property=new AssesmentProperties();
 	property.setAssessment_id(model.getAssessment_id());
 model1.setForeign_key(property);
+	model1.setSection_no(model.getSection_no());
 	model1.setSection_no(model.getSection_no());
 	model1.setNo_of_questions(model.getNo_of_questions());
 	model1.setSection_type(model.getSection_type());
