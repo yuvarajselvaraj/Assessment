@@ -68,10 +68,10 @@ public HttpStatus deleteproperty(@PathVariable("AssesmentId") Long id)
 	properties.deleteById(id);
 	return HttpStatus.ACCEPTED;
 }
-@RequestMapping(value="/AssesmentProperty/{AssessmentId}",method=RequestMethod.PUT)
-public ResponseEntity<List<Long>> Updateoptions(@RequestBody AssesmentProperties model,@PathVariable("AssessmentId") Long id)
+@RequestMapping(value="/AssesmentProperty",method=RequestMethod.PUT)
+public ResponseEntity<List<Long>> Updateoptions(@RequestBody AssesmentProperties model)
 {
-	model.setAssessment_id(id);
+	
 	AssesmentProperties updated=properties.createOrUpdateAssesment(model);
 	List<Long> n=new ArrayList<Long>();
 	n.add(updated.getAssessment_id());

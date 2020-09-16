@@ -51,15 +51,15 @@ public HttpStatus deleteproperty(@PathVariable("Question") Long Question)
 	return HttpStatus.ACCEPTED;
 }
 
-@RequestMapping(value="/QuestionProperty/{QuestionId}",method=RequestMethod.PUT)
-public ResponseEntity<Long> createOrUpdateoptions(@RequestBody Question model,@PathVariable("QuestionId") Long id)
+@RequestMapping(value="/QuestionProperty",method=RequestMethod.PUT)
+public ResponseEntity<Long> createOrUpdateoptions(@RequestBody Question model)
 {
 	QuestionProperties model1=new QuestionProperties();
 	model1.setAnswer_type(model.getAnswer_type());
 	model1.setLogic_jump(model.getLogic_jump());
 	model1.setNo_of_options(model.getNo_of_options());
 	model1.setOptions(model.getOptions());
-	model1.setQuestion_id(id);
+	model1.setQuestion_id(model.getQuestion_id());
 	model1.setQuestion_no(model.getQuestion_no());
 	model1.setQuestion_q(model.getQuestion_q());
 	model1.setQuestion_type(model.getQuestion_type());

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cresco.assesment.model.AssesmentProperties;
 import com.cresco.assesment.model.DisplaySettings;
 import com.cresco.assesment.model.PrimaryKey;
+import com.cresco.assesment.model.models.Display;
 import com.cresco.assesment.service.DisplaySettingsImpl;
 
 @RestController
@@ -37,10 +38,28 @@ public ResponseEntity<DisplaySettings> getoption(@PathVariable("AssessmentId") L
 	DisplaySettings model=display.getOptionsByaname(id);
 	return new ResponseEntity<DisplaySettings>(model,new HttpHeaders(), HttpStatus.OK);
 }
-@PostMapping(value="/options")
-public ResponseEntity<DisplaySettings> createOrUpdateoptions(@RequestBody DisplaySettings model)
-{
-	DisplaySettings updated=display.createOrUpdateoptions(model);
+@RequestMapping(value="/options",method=RequestMethod.POST)
+public ResponseEntity<DisplaySettings> createOrUpdateoptions(@RequestBody Display model)
+{	
+	DisplaySettings settings=new DisplaySettings();
+	PrimaryKey key=new PrimaryKey();
+	AssesmentProperties pro=new AssesmentProperties();
+	pro.setAssessment_id(model.getAssessment_id());
+	key.setAssessment(pro);
+	settings.setPrimarykey(key);
+	settings.setAjson(model.getAjson());
+	DisplaySettings updated=display.createOrUpdateoptions(settings);
+	return new ResponseEntity<DisplaySettings>(updated,new HttpHeaders(),HttpStatus.OK);
+}
+@RequestMapping(value="/options",method=RequestMethod.PUT)
+public ResponseEntity<DisplaySettings> Updateoptions(@RequestBody Display model)
+{	DisplaySettings settings=new DisplaySettings();
+	PrimaryKey key=new PrimaryKey();
+	AssesmentProperties pro=new AssesmentProperties();
+	pro.setAssessment_id(model.getAssessment_id());
+	key.setAssessment(pro);
+	settings.setPrimarykey(key);
+	DisplaySettings updated=display.createOrUpdateoptions(settings);
 	return new ResponseEntity<DisplaySettings>(updated,new HttpHeaders(),HttpStatus.OK);
 }
 }

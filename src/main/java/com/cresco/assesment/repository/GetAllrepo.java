@@ -1,13 +1,11 @@
 package com.cresco.assesment.repository;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.cresco.assesment.model.GetAll;
-import com.cresco.assesment.model.models.Assessment;
+import com.cresco.assesment.model.Assessment;
 
 public interface GetAllrepo extends JpaRepository<Assessment, Long> {
 	/*@Query(value="select a.assessment_id,a.no_of_sections as assessment_noofsections,a.specialization as assessment_specialization,a.assessment_level as assessment_level,a.assessment_name as assessment_name,a.keywords as assessment_keywords,a.role as assessment_role,a.time as assessment_time,\r\n" + 
@@ -48,9 +46,19 @@ public interface GetAllrepo extends JpaRepository<Assessment, Long> {
 			"left join theme_settings ts on ts.assessment_id=a.assessment_id\r\n" + 
 			"group by a.assessment_id,a.no_of_sections,a.specialization ,a.assessment_level ,a.assessment_name ,a.keywords ,a.role ,a.time;",nativeQuery=true)
 	List<GetAll> getalltables();*/
-	@Query(value="select *,"
-			+ "(select json_agg(section) from (select * from section s where a.assessment_id=s.assessment_id)section)as sections,\r\n" + 
-			"(select json_agg(question) from (select * from question_prop q where a.assessment_id=q.assessment_id )question)as questions\r\n" + 
-			"from assessment a where a.assessment_id=?1",nativeQuery=true)
+	@Query(value="select a.assessment_id,a.no_of_sections as assessment_noofsections,a.specialization as assessment_specialization,a.assessment_level as assessment_level,a.assessment_name as assessment_name,a.keywords as assessment_keywords,a.role as assessment_role,a.time as assessment_time,\r\n" + 
+			"\r\n" + 
+			"(select json_agg(section) from (select * from section s where a.assessment_id=s.assessment_id)section)as sections,\r\n" + 
+			"(select json_agg(question) from (select * from question_prop q where a.assessment_id=q.assessment_id )question)as questions,\r\n" + 
+			"acs.accessbility,acs.negative_mark as accessbility_negativemark,\r\n" + 
+			"dis.objectjson as display_objectjson,\r\n" + 
+			"es.internet_issue,es.mic_issue,es.proctor_alert,es.server_issue,es.webcam_issue,\r\n" + 
+			"ss.shortcut,ss.no_of_options as shortcut_noofoptions,ss.options as shortcut_options,\r\n" + 
+			"ts.themes,ts.modes\r\n" + 
+			"from assessment a join accessbility_settings acs on a.assessment_id=1 and a.assessment_id=acs.assessment_id\r\n" + 
+			"join display_settings dis on a.assessment_id=dis.assessment_id\r\n" + 
+			"join error_settings es on a.assessment_id=es.assessment_id\r\n" + 
+			"join shortcut_settings ss on a.assessment_id=ss.assessment_id\r\n" + 
+			"join theme_settings ts on ts.assessment_id=a.assessment_id;",nativeQuery=true)
 	Optional<Assessment> getbyid(Long id);
 }

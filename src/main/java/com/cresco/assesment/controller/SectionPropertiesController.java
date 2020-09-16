@@ -67,8 +67,8 @@ public HttpStatus deleteproperty(@PathVariable("SectionId") Long section)
 	properties.deleteBySectionAndName(section);
 	return HttpStatus.ACCEPTED;
 }
-@RequestMapping(value="/SectionProperty/{SectionId}",method=RequestMethod.PUT)
-public ResponseEntity<Long> Updateoptions(@RequestBody Section model,@PathVariable ("SectionId") Long id)
+@RequestMapping(value="/SectionProperty",method=RequestMethod.PUT)
+public ResponseEntity<Long> Updateoptions(@RequestBody Section model)
 {
 	SectionProperties model1=new SectionProperties();
 	AssesmentProperties property=new AssesmentProperties();
@@ -80,7 +80,7 @@ model1.setForeign_key(property);
 	model1.setSection_type(model.getSection_type());
 	model1.setTime(model.getTime());
 	model1.setWeightage(model.getWeightage());
-	model1.setSection_id(id);
+	model1.setSection_id(model.getSection_id());
 	SectionProperties updated=properties.createOrUpdateSections(model1);
 	return new ResponseEntity<Long>(updated.getSection_id(),new HttpHeaders(),HttpStatus.OK);
 }

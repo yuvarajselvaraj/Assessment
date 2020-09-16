@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cresco.assesment.model.AccessbilitySettings;
 import com.cresco.assesment.model.AssesmentProperties;
 import com.cresco.assesment.model.PrimaryKey;
+import com.cresco.assesment.model.models.Accessbility;
 import com.cresco.assesment.service.AccessbilitySettingsImpl;
 
 @RestController
@@ -37,9 +38,31 @@ public ResponseEntity<AccessbilitySettings> gettheme(@PathVariable("AssesmentId"
 	
 }
 @RequestMapping(value="/AccessbilitySettings",method=RequestMethod.POST)
-public ResponseEntity<AccessbilitySettings> createOrUpdatethemes(@RequestBody AccessbilitySettings model)
-{
-	AccessbilitySettings updated=settings.createOrUpdateoptions(model);
+public ResponseEntity<AccessbilitySettings> createOrUpdatethemes(@RequestBody Accessbility model)
+{	AccessbilitySettings setting=new AccessbilitySettings();
+	AssesmentProperties ap=new AssesmentProperties();
+	ap.setAssessment_id(model.getAssessment_id());
+	PrimaryKey key=new PrimaryKey();
+	key.setAssessment(ap);
+	setting.setPrimarykey(key);
+	setting.setAccessbility(model.getAccessbility());
+	setting.setNegative_mark(model.getNegative_mark());
+	
+	AccessbilitySettings updated=settings.createOrUpdateoptions(setting);
+	return new ResponseEntity<AccessbilitySettings>(updated,new HttpHeaders(),HttpStatus.OK);
+}
+@RequestMapping(value="/AccessbilitySettings",method=RequestMethod.PUT)
+public ResponseEntity<AccessbilitySettings> Updatethemes(@RequestBody Accessbility model)
+{	AccessbilitySettings setting=new AccessbilitySettings();
+	AssesmentProperties ap=new AssesmentProperties();
+	ap.setAssessment_id(model.getAssessment_id());
+	PrimaryKey key=new PrimaryKey();
+	key.setAssessment(ap);
+	setting.setPrimarykey(key);
+	setting.setAccessbility(model.getAccessbility());
+	setting.setNegative_mark(model.getNegative_mark());
+	
+	AccessbilitySettings updated=settings.createOrUpdateoptions(setting);
 	return new ResponseEntity<AccessbilitySettings>(updated,new HttpHeaders(),HttpStatus.OK);
 }
 }
