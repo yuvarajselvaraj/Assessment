@@ -25,11 +25,11 @@ public class Assessment {
 	private Long assessment_id;
 	private String assessment_name;
 	private String assessment_level;
-	private String assessment_specialization;
-	private int assessment_time;
-	private String assessment_keywords;
-	private String assessment_role;
-	private int assessment_noofsections;
+	private String specialization;
+	private int time;
+	private String keywords;
+	private String role;
+	private int no_of_sections;
 	@Type(type = "jsonb")
 	@Column(columnDefinition="json")
 	private List<ASection> sections;
@@ -39,20 +39,20 @@ public class Assessment {
 	@Type(type = "jsonb")
 	@Column(columnDefinition="json")
 	private Optionjson Accessbility;
-	private int accessbility_negativemark;
+	private int negative_mark;
 	@Type(type = "jsonb")
 	@Column(columnDefinition="json")
-	private Optionjson display_objectjson;
+	private Optionjson objectjson;
 	private String internet_issue;
 	private String server_issue;
 	private String webcam_issue;
 	private String proctor_alert;
 	private String mic_issue;
 	private String Shortcut;
-	private int shortcut_noofoptions;
+	private int no_of_options;
 	@Type(type = "jsonb")
 	@Column(columnDefinition="json")
-	private QOptions shortcut_options;
+	private QOptions options;
 	private String modes;
 	private int Themes;
 	public Long getAssessment_id() {
@@ -73,25 +73,36 @@ public class Assessment {
 	public void setAssessment_level(String assessment_level) {
 		this.assessment_level = assessment_level;
 	}
-	public int getAssessment_time() {
-		return assessment_time;
+	public String getSpecialization() {
+		return specialization;
 	}
-	public void setAssessment_time(int assessment_time) {
-		this.assessment_time = assessment_time;
+	public void setSpecialization(String specialization) {
+		this.specialization = specialization;
 	}
-	public String getAssessment_keywords() {
-		return assessment_keywords;
+	public int getTime() {
+		return time;
 	}
-	public void setAssessment_keywords(String assessment_keywords) {
-		this.assessment_keywords = assessment_keywords;
+	public void setTime(int time) {
+		this.time = time;
 	}
-	public String getAssessment_role() {
-		return assessment_role;
+	public String getKeywords() {
+		return keywords;
 	}
-	public void setAssessment_role(String assessment_role) {
-		this.assessment_role = assessment_role;
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
 	}
-	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public int getNo_of_sections() {
+		return no_of_sections;
+	}
+	public void setNo_of_sections(int no_of_sections) {
+		this.no_of_sections = no_of_sections;
+	}
 	public List<ASection> getSections() {
 		return sections;
 	}
@@ -110,17 +121,17 @@ public class Assessment {
 	public void setAccessbility(Optionjson accessbility) {
 		Accessbility = accessbility;
 	}
-	public int getAccessbility_negativemark() {
-		return accessbility_negativemark;
+	public int getNegative_mark() {
+		return negative_mark;
 	}
-	public void setAccessbility_negativemark(int accessbility_negativemark) {
-		this.accessbility_negativemark = accessbility_negativemark;
+	public void setNegative_mark(int negative_mark) {
+		this.negative_mark = negative_mark;
 	}
-	public Optionjson getDisplay_objectjson() {
-		return display_objectjson;
+	public Optionjson getObjectjson() {
+		return objectjson;
 	}
-	public void setDisplay_objectjson(Optionjson display_objectjson) {
-		this.display_objectjson = display_objectjson;
+	public void setObjectjson(Optionjson objectjson) {
+		this.objectjson = objectjson;
 	}
 	public String getInternet_issue() {
 		return internet_issue;
@@ -158,17 +169,17 @@ public class Assessment {
 	public void setShortcut(String shortcut) {
 		Shortcut = shortcut;
 	}
-	public int getShortcut_noofoptions() {
-		return shortcut_noofoptions;
+	public int getNo_of_options() {
+		return no_of_options;
 	}
-	public void setShortcut_noofoptions(int shortcut_noofoptions) {
-		this.shortcut_noofoptions = shortcut_noofoptions;
+	public void setNo_of_options(int no_of_options) {
+		this.no_of_options = no_of_options;
 	}
-	public QOptions getShortcut_options() {
-		return shortcut_options;
+	public QOptions getOptions() {
+		return options;
 	}
-	public void setShortcut_options(QOptions shortcut_options) {
-		this.shortcut_options = shortcut_options;
+	public void setOptions(QOptions options) {
+		this.options = options;
 	}
 	public String getModes() {
 		return modes;
@@ -181,19 +192,6 @@ public class Assessment {
 	}
 	public void setThemes(int themes) {
 		Themes = themes;
-	}
-	
-	public int getAssessment_noofsections() {
-		return assessment_noofsections;
-	}
-	public void setAssessment_noofsections(int assessment_noofsections) {
-		this.assessment_noofsections = assessment_noofsections;
-	}
-	public String getAssessment_specialization() {
-		return assessment_specialization;
-	}
-	public void setAssessment_specialization(String assessment_specialization) {
-		this.assessment_specialization = assessment_specialization;
 	}
 	
 }
