@@ -28,7 +28,7 @@ List<QuestionProperties> getbyids(Long assessment_id,Long section_id);
 @Modifying
 @Query(value= 
 		"			insert into question_prop(answer_type,logic_jump,no_of_options,options,question_no,question_q,question_type,score,timer,assessment_id,section_id)  \r\n" + 
-		"			values(null,null,null,null,?1,null,null,null,null,?2,?3);\r\n" 
+		"			values(null,null,4,null,?1,null,null,null,null,?2,?3);\r\n" 
 		,nativeQuery=true)
 void populatequestion(Long noofquestions,Long assessmentid,Long sectionid);
 }

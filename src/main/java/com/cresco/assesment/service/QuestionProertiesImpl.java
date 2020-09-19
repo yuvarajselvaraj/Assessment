@@ -33,6 +33,10 @@ QuestionPropertiesRepo repo;
 		{
 			properties.setQuestion_no((long) 0);
 		}
+		if(properties.getNo_of_options()==null)
+		{
+			properties.setNo_of_options((long)4);
+		}
 			QuestionProperties model=repo.save(properties);
 			Long no=repo.getnobyid(model.getForeign_key2().getSection_id());
 			repo.updateafterinsert(no, model.getQuestion_id());

@@ -26,10 +26,10 @@ public class Assessment {
 	private String assessment_name;
 	private String assessment_level;
 	private String specialization;
-	private int time;
+	private Long time;
 	private String keywords;
 	private String role;
-	private int no_of_sections;
+	private Long no_of_sections;
 	@Type(type = "jsonb")
 	@Column(columnDefinition="json")
 	private List<ASection> sections;
@@ -39,7 +39,7 @@ public class Assessment {
 	@Type(type = "jsonb")
 	@Column(columnDefinition="json")
 	private Optionjson Accessbility;
-	private int negative_mark;
+	private Long negative_mark;
 	@Type(type = "jsonb")
 	@Column(columnDefinition="json")
 	private Optionjson objectjson;
@@ -49,12 +49,12 @@ public class Assessment {
 	private String proctor_alert;
 	private String mic_issue;
 	private String Shortcut;
-	private int no_of_options;
+	private Long no_of_options;
 	@Type(type = "jsonb")
 	@Column(columnDefinition="json")
 	private QOptions options;
 	private String modes;
-	private int Themes;
+	private Long Themes;
 	public Long getAssessment_id() {
 		return assessment_id;
 	}
@@ -79,10 +79,10 @@ public class Assessment {
 	public void setSpecialization(String specialization) {
 		this.specialization = specialization;
 	}
-	public int getTime() {
+	public Long getTime() {
 		return time;
 	}
-	public void setTime(int time) {
+	public void setTime(Long time) {
 		this.time = time;
 	}
 	public String getKeywords() {
@@ -97,10 +97,10 @@ public class Assessment {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public int getNo_of_sections() {
+	public Long getNo_of_sections() {
 		return no_of_sections;
 	}
-	public void setNo_of_sections(int no_of_sections) {
+	public void setNo_of_sections(Long no_of_sections) {
 		this.no_of_sections = no_of_sections;
 	}
 	public List<ASection> getSections() {
@@ -121,10 +121,10 @@ public class Assessment {
 	public void setAccessbility(Optionjson accessbility) {
 		Accessbility = accessbility;
 	}
-	public int getNegative_mark() {
+	public Long getNegative_mark() {
 		return negative_mark;
 	}
-	public void setNegative_mark(int negative_mark) {
+	public void setNegative_mark(Long negative_mark) {
 		this.negative_mark = negative_mark;
 	}
 	public Optionjson getObjectjson() {
@@ -169,10 +169,10 @@ public class Assessment {
 	public void setShortcut(String shortcut) {
 		Shortcut = shortcut;
 	}
-	public int getNo_of_options() {
+	public Long getNo_of_options() {
 		return no_of_options;
 	}
-	public void setNo_of_options(int no_of_options) {
+	public void setNo_of_options(Long no_of_options) {
 		this.no_of_options = no_of_options;
 	}
 	public QOptions getOptions() {
@@ -187,10 +187,10 @@ public class Assessment {
 	public void setModes(String modes) {
 		this.modes = modes;
 	}
-	public int getThemes() {
+	public Long getThemes() {
 		return Themes;
 	}
-	public void setThemes(int themes) {
+	public void setThemes(Long themes) {
 		Themes = themes;
 	}
 	
