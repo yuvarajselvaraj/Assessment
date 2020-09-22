@@ -5,9 +5,9 @@ public class Section {
 	private Long section_no;
 	private Long assessment_id;
 	private String section_type;
-	private int weightage;
-	private int time;
-	private int No_of_questions;
+	private Long weightage;
+	private Long time;
+	private Long No_of_questions;
 	public Long getSection_id() {
 		return section_id;
 	}
@@ -32,23 +32,24 @@ public class Section {
 	public void setSection_type(String section_type) {
 		this.section_type = section_type;
 	}
-	public int getWeightage() {
+	public Long getWeightage() {
 		return weightage;
 	}
-	public void setWeightage(int weightage) {
+	public void setWeightage(Long weightage) {
 		this.weightage = weightage;
 	}
-	public int getTime() {
+	public Long getTime() {
 		return time;
 	}
-	public void setTime(int time) {
+	public void setTime(Long time) {
 		this.time = time;
 	}
-	public int getNo_of_questions() {
+	public Long getNo_of_questions() {
 		return No_of_questions;
 	}
-	public void setNo_of_questions(int no_of_questions) {
+	public void setNo_of_questions(Long no_of_questions) {
 		No_of_questions = no_of_questions;
 	}
+	
 	
 }

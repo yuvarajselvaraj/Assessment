@@ -18,10 +18,10 @@ import javax.persistence.Table;
 	private String assessment_name;
 	private String assessment_level;
 	private String Specialization;
-	private int time;
+	private Long time;
 	private String keywords;
 	private String role;
-	private int No_of_sections;
+	private Long No_of_sections;
 	public Long getAssessment_id() {
 		return assessment_id;
 	}
@@ -46,10 +46,10 @@ import javax.persistence.Table;
 	public void setSpecialization(String specialization) {
 		Specialization = specialization;
 	}
-	public int getTime() {
+	public Long getTime() {
 		return time;
 	}
-	public void setTime(int time) {
+	public void setTime(Long time) {
 		this.time = time;
 	}
 	public String getKeywords() {
@@ -58,19 +58,18 @@ import javax.persistence.Table;
 	public void setKeywords(String keywords) {
 		this.keywords = keywords;
 	}
-	public int getNo_of_sections() {
-		return No_of_sections;
-	}
-	public void setNo_of_sections(int no_of_sections) {
-		No_of_sections = no_of_sections;
-	}
 	public String getRole() {
 		return role;
 	}
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+	public Long getNo_of_sections() {
+		return No_of_sections;
+	}
+	public void setNo_of_sections(Long no_of_sections) {
+		No_of_sections = no_of_sections;
+	}
 	
 	
 }

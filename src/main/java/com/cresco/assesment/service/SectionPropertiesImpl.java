@@ -6,11 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cresco.assesment.model.AssesmentProperties;
 import com.cresco.assesment.model.SectionProperties;
+import com.cresco.assesment.model.models.Section;
 import com.cresco.assesment.repository.QuestionPropertiesRepo;
 import com.cresco.assesment.repository.SectionPropertiesRepo;
-
-import ch.qos.logback.core.net.SyslogOutputStream;
 
 @Service
 public class SectionPropertiesImpl implements SectionPropertiesService {
@@ -34,30 +34,35 @@ QuestionPropertiesRepo repo1;
 	}
 
 	@Override
-	public SectionProperties createOrUpdateSections(SectionProperties properties) {
+	public SectionProperties createSections(Section model) {
 		// TODO Auto-generated method stub
 		
-		    if( properties.getSection_id()==null)
+		    if( model.getSection_id()==null)
 		    {
-		    	properties.setSection_no((long) 0);
+		    	model.setSection_no((long) 0);
+		    }
 		    	
-		    	SectionProperties model=repo.save(properties);
-		    	Long no=repo.getnobyid(model.getForeign_key().getAssessment_id());
-			
-				System.out.println(model.getNo_of_questions());
-				System.out.println(model.getForeign_key().getAssessment_id());
-				System.out.println(model.getSection_id());
-				repo.updateafterinsert(no,model.getSection_id() );
+		    	
+		    	SectionProperties model1=new SectionProperties();
+		    	AssesmentProperties property=new AssesmentProperties();
+		    	property.setAssessment_id(model.getAssessment_id());
+		    model1.setForeign_key(property);
+		    	model1.setSection_no(model.getSection_no());
+		    	model1.setNo_of_questions(model.getNo_of_questions());
+		    	model1.setSection_type(model.getSection_type());
+		    	model1.setSection_no(model.getSection_no());
+		    	model1.setTime(model.getTime());
+		    	model1.setWeightage(model.getWeightage());
+		    	
+		    	SectionProperties model2=repo.save(model1);
+		    	Long no=repo.getnobyid(model2.getForeign_key().getAssessment_id());
+				repo.updateafterinsert(no,model2.getSection_id() );
 				for(int i=1;i<=model.getNo_of_questions();i++)
 				{
-					repo1.populatequestion( (long)i,model.getForeign_key().getAssessment_id(),model.getSection_id());
+					repo1.populatequestion( (long)i,model2.getForeign_key().getAssessment_id(),model2.getSection_id());
 				}
 				
-				return model;
-				
-		    }
-			SectionProperties model=repo.save(properties);
-			return model;
+				return model2;
 	}
 
 	@Override
@@ -66,11 +71,28 @@ QuestionPropertiesRepo repo1;
 		if(property.isPresent())
 		{	
 			SectionProperties pro=property.get();
-			repo.deleteById(section);
-			repo.updateAfterDelete(pro.getSection_id(),section);
+			repo.deletebyid(section);
+			repo.updateAfterDelete(pro.getForeign_key().getAssessment_id(),pro.getSection_no());
 		}
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void updateSections(Section model) {
+		// TODO Auto-generated method stub
+		SectionProperties model1=new SectionProperties();
+		AssesmentProperties property=new AssesmentProperties();
+		property.setAssessment_id(model.getAssessment_id());
+	model1.setForeign_key(property);
+		model1.setSection_no(model.getSection_no());
+		model1.setSection_no(model.getSection_no());
+		model1.setNo_of_questions(model.getNo_of_questions());
+		model1.setSection_type(model.getSection_type());
+		model1.setTime(model.getTime());
+		model1.setWeightage(model.getWeightage());
+		model1.setSection_id(model.getSection_id());
+		repo.save(model1);
 	}
 
 }

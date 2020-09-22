@@ -6,7 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cresco.assesment.model.AssesmentProperties;
+import com.cresco.assesment.model.PrimaryKey;
 import com.cresco.assesment.model.ThemeSettings;
+import com.cresco.assesment.model.models.Themes;
 import com.cresco.assesment.repository.ThemeSettingsRepo;
 @Service
 public class ThemeSettingsImpl implements ThemeSettingsService {
@@ -27,11 +30,18 @@ ThemeSettingsRepo repo;
 	}
 
 	@Override
-	public ThemeSettings createOrUpdateSettings(ThemeSettings settings) {
+	public ThemeSettings createOrUpdateSettings(Themes model) {
 		// TODO Auto-generated method stub
-		
-			ThemeSettings model=repo.save(settings);
-			return model;
+		ThemeSettings setting=new ThemeSettings();
+		PrimaryKey key=new PrimaryKey();
+		AssesmentProperties pro=new AssesmentProperties();
+		pro.setAssessment_id(model.getAssessment_id());
+		key.setAssessment(pro);
+		setting.setPrimaryKey(key);
+		setting.setModes(model.getModes());
+		setting.setThemes(model.getThemes());
+			ThemeSettings model1=repo.save(setting);
+			return model1;
 	}
 
 }

@@ -5,8 +5,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.cresco.assesment.model.models.Error;
+import com.cresco.assesment.model.AssesmentProperties;
 import com.cresco.assesment.model.ErrorSettings;
+import com.cresco.assesment.model.PrimaryKey;
 import com.cresco.assesment.repository.ErrorSettingsRepo;
 @Service
 public class ErrorSettingsImpl implements ErrorSettingsService {
@@ -27,10 +29,21 @@ ErrorSettingsRepo repo;
 	}
 
 	@Override
-	public ErrorSettings createOrUpdateSettings(ErrorSettings settings) {
+	public ErrorSettings createOrUpdateSettings(Error model) {
 		// TODO Auto-generated method stub
-		ErrorSettings model=repo.save(settings);
-		return model;
+		ErrorSettings settings=new ErrorSettings();
+		PrimaryKey key=new PrimaryKey();
+		AssesmentProperties pro=new AssesmentProperties();
+		pro.setAssessment_id(model.getAssessment_id());
+		key.setAssessment(pro);
+		settings.setPrimaryKey(key);
+		settings.setInternet_issue(model.getInternet_issue());
+		settings.setMic_issue(model.getMic_issue());
+		settings.setProctor_alert(model.getProctor_alert());
+		settings.setServer_issue(model.getServer_issue());
+		settings.setWebcam_issue(model.getWebcam_issue());
+		ErrorSettings model1=repo.save(settings);
+		return model1;
 	}
 
 }

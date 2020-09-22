@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cresco.assesment.model.AssesmentProperties;
 import com.cresco.assesment.model.DisplaySettings;
 import com.cresco.assesment.model.PrimaryKey;
+import com.cresco.assesment.model.models.Display;
 import com.cresco.assesment.repository.DisplaySettingsRepo;
 @Service
 public class DisplaySettingsImpl implements DisplaySettingsService {
@@ -30,11 +32,17 @@ DisplaySettingsRepo repo;
 
 
 	@Override
-	public DisplaySettings createOrUpdateoptions(DisplaySettings displaymodel ) {
+	public DisplaySettings createOrUpdateoptions(Display model ) {
 		// TODO Auto-generated method stub
-		
-			DisplaySettings model=repo.save(displaymodel);
-			return model;
+		DisplaySettings settings=new DisplaySettings();
+		PrimaryKey key=new PrimaryKey();
+		AssesmentProperties pro=new AssesmentProperties();
+		pro.setAssessment_id(model.getAssessment_id());
+		key.setAssessment(pro);
+		settings.setPrimarykey(key);
+		settings.setAjson(model.getAjson());
+		DisplaySettings model1=repo.save(settings);
+		return model1;
 		
 	}
 

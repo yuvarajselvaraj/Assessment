@@ -1,5 +1,6 @@
 package com.cresco.assesment.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cresco.assesment.model.AssesmentProperties;
+import com.cresco.assesment.model.Assessment;
 import com.cresco.assesment.repository.AssesmentPropertyRepo;
 import com.cresco.assesment.repository.GetAllrepo;
 
@@ -24,36 +26,28 @@ public List<AssesmentProperties> getAllAssesment() {
 }
 
 @Override
-public AssesmentProperties getAssesmentById(Long AssessmentId) {
+public List<AssesmentProperties> getAssesmentById(Long AssessmentId) {
 	Optional<AssesmentProperties> properties=repo.findById(AssessmentId);
-	
+	List<AssesmentProperties> model=new ArrayList<AssesmentProperties>();
+	model.add(properties.get());
 	// TODO Auto-generated method stub
-	return properties.get();
+	return  model;
 }
 
 @Override
-public AssesmentProperties createOrUpdateAssesment(AssesmentProperties properties) {
+public Long createOrUpdateAssesment(Assessment model) {
 	// TODO Auto-generated method stub
-	/*Optional<AssesmentProperties> property=repo.findById(properties.getAssessmentId());
-	if(property.isPresent())
-	{
-		AssesmentProperties model=property.get();
-		model.setAssessmentName(properties.getAssessmentName());
-		model.setAssessmentLevel(properties.getAssessmentLevel());
-		model.setAssessmentId(properties.getAssessmentId());
-		model.setSpecialization(properties.getSpecialization());
-		model.setNoOfSections(properties.getNoOfSections());
-		model.setTime(properties.getTime());
-		model=repo.save(model);
-		return model;
-	}
-	else
-	{
-		AssesmentProperties model=repo.save(properties);
-		return model;
-	}*/
-	AssesmentProperties model=repo.save(properties);
-	return model;
+	AssesmentProperties prop=new AssesmentProperties();
+	prop.setAssessment_level(model.getAssessment_level());
+	prop.setAssessment_name(model.getAssessment_name());
+	prop.setKeywords(model.getKeywords());
+	prop.setNo_of_sections(model.getNo_of_sections());
+	prop.setRole(model.getRole());
+	prop.setSpecialization(model.getRole());
+	prop.setTime(model.getTime());
+	AssesmentProperties model1=repo.save(prop);
+	return model1.getAssessment_id();
+	
 	
 }
 
@@ -68,11 +62,22 @@ public void deleteById(Long AssessmentId) {
 	}
 	
 }
+
+
 @Override
-public Long getAssessmentid(String AssessmentName) {
+public void UpdateAssesment(Assessment model) 
+{
+	AssesmentProperties prop=new AssesmentProperties();
+	prop.setAssessment_id(model.getAssessment_id());
+	prop.setAssessment_level(model.getAssessment_level());
+	prop.setAssessment_name(model.getAssessment_name());
+	prop.setKeywords(model.getKeywords());
+	prop.setNo_of_sections(model.getNo_of_sections());
+	prop.setRole(model.getRole());
+	prop.setSpecialization(model.getRole());
+	prop.setTime(model.getTime());
 	// TODO Auto-generated method stub
-	Long id=repo.getidbyname(AssessmentName);
-	return id;
+	repo.save(prop);
 }
 
 

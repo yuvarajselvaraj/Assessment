@@ -6,7 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cresco.assesment.model.AssesmentProperties;
 import com.cresco.assesment.model.QuestionProperties;
+import com.cresco.assesment.model.SectionProperties;
+import com.cresco.assesment.model.models.Question;
 import com.cresco.assesment.repository.QuestionPropertiesRepo;
 @Service
 public class QuestionProertiesImpl implements QuestionPropertiesService {
@@ -27,20 +30,26 @@ QuestionPropertiesRepo repo;
 	}
 
 	@Override
-	public QuestionProperties createOrUpdateQuestionProp(QuestionProperties properties) {
+	public void UpdateQuestionProp(Question model) {
+		QuestionProperties model1=new QuestionProperties();
+		model1.setAnswer_type(model.getAnswer_type());
+		model1.setLogic_jump(model.getLogic_jump());
+		model1.setNo_of_options(model.getNo_of_options());
+		model1.setOptions(model.getOptions());
+		model1.setQuestion_id(model.getQuestion_id());
+		model1.setQuestion_no(model.getQuestion_no());
+		model1.setQuestion_q(model.getQuestion_q());
+		model1.setQuestion_type(model.getQuestion_type());
+		model1.setScore(model.getScore());
+		model1.setTimer(model.getTimer());
+		AssesmentProperties ap=new AssesmentProperties();
+		ap.setAssessment_id(model.getAssessment_id());
+		SectionProperties sp=new SectionProperties();
+		sp.setSection_id(model.getSection_id());
+		model1.setForeign_key1(ap);
+		model1.setForeign_key2(sp);
 		// TODO Auto-generated method stub
-		if(properties.getQuestion_no()==null)
-		{
-			properties.setQuestion_no((long) 0);
-		}
-		if(properties.getNo_of_options()==null)
-		{
-			properties.setNo_of_options((long)4);
-		}
-			QuestionProperties model=repo.save(properties);
-			Long no=repo.getnobyid(model.getForeign_key2().getSection_id());
-			repo.updateafterinsert(no, model.getQuestion_id());
-			return model;
+		repo.save(model1);
 		
 	}
 

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Immutable;
+import org.hibernate.annotations.Subselect;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
@@ -15,11 +17,12 @@ import com.cresco.assesment.json.Optionjson;
 import com.cresco.assesment.json.QOptions;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 @Entity
+@Immutable
 @TypeDefs({
     @TypeDef(name = "jsonb", typeClass =JsonBinaryType.class)
     		
 })
-@Table(name="AllAssessment")
+@Table(name="assessment_view")
 public class Assessment {
 	@Id
 	private Long assessment_id;

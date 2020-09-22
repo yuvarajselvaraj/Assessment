@@ -28,14 +28,20 @@ public class SectionProperties {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private AssesmentProperties foreign_key;
 	private String section_type;
-	private int weightage;
-	private int time;
-	private int No_of_questions;
+	private Long weightage;
+	private Long time;
+	private Long No_of_questions;
 	public Long getSection_id() {
 		return section_id;
 	}
 	public void setSection_id(Long section_id) {
 		this.section_id = section_id;
+	}
+	public Long getSection_no() {
+		return section_no;
+	}
+	public void setSection_no(Long section_no) {
+		this.section_no = section_no;
 	}
 	public AssesmentProperties getForeign_key() {
 		return foreign_key;
@@ -49,30 +55,23 @@ public class SectionProperties {
 	public void setSection_type(String section_type) {
 		this.section_type = section_type;
 	}
-	public int getWeightage() {
+	public Long getWeightage() {
 		return weightage;
 	}
-	public void setWeightage(int weightage) {
+	public void setWeightage(Long weightage) {
 		this.weightage = weightage;
 	}
-	public int getTime() {
+	public Long getTime() {
 		return time;
 	}
-	public void setTime(int time) {
+	public void setTime(Long time) {
 		this.time = time;
 	}
-	public int getNo_of_questions() {
+	public Long getNo_of_questions() {
 		return No_of_questions;
 	}
-	public void setNo_of_questions(int no_of_questions) {
+	public void setNo_of_questions(Long no_of_questions) {
 		No_of_questions = no_of_questions;
 	}
-	public Long getSection_no() {
-		return section_no;
-	}
-	public void setSection_no(Long section_no) {
-		this.section_no = section_no;
-	}
-	
 	
 }
