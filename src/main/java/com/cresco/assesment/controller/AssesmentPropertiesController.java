@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cresco.alltable.model.Assessment;
 import com.cresco.assesment.model.AssesmentProperties;
-import com.cresco.assesment.model.Assessment;
 import com.cresco.assesment.service.AssesmentPropertiesImpl;
 
 @RestController

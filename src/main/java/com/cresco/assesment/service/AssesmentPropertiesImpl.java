@@ -7,10 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cresco.alltable.model.Assessment;
+import com.cresco.alltable.repo.GetAllrepo;
 import com.cresco.assesment.model.AssesmentProperties;
-import com.cresco.assesment.model.Assessment;
 import com.cresco.assesment.repository.AssesmentPropertyRepo;
-import com.cresco.assesment.repository.GetAllrepo;
 
 @Service
 public class AssesmentPropertiesImpl  implements AssesmentPropertiesService{
