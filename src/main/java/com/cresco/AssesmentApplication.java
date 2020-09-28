@@ -1,4 +1,4 @@
-package com.cresco.assesment;
+package com.cresco;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

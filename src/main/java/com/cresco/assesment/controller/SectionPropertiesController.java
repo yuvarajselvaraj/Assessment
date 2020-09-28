@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cresco.assesment.model.AssesmentProperties;
 import com.cresco.assesment.model.SectionProperties;
-import com.cresco.assesment.model.models.Section;
 import com.cresco.assesment.service.SectionPropertiesImpl;
+import com.cresco.assesment.vo.Section;
 
 @RestController
 @CrossOrigin

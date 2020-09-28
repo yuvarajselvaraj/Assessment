@@ -16,8 +16,6 @@ import com.cresco.assesment.repository.AssesmentPropertyRepo;
 public class AssesmentPropertiesImpl  implements AssesmentPropertiesService{
 @Autowired
 AssesmentPropertyRepo repo;
-@Autowired
-GetAllrepo repo1;
 @Override
 public List<AssesmentProperties> getAllAssesment() {
 	List<AssesmentProperties> properties=repo.findAll();

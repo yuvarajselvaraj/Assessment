@@ -1,4 +1,4 @@
-package com.cresco.assesment.model.models;
+package com.cresco.assesment.vo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -3,7 +3,7 @@ package com.cresco.assesment.service;
 import java.util.List;
 
 import com.cresco.assesment.model.QuestionProperties;
-import com.cresco.assesment.model.models.Question;
+import com.cresco.assesment.vo.Question;
 
 public interface QuestionPropertiesService {
 public List<QuestionProperties> getAllQuestionProp();

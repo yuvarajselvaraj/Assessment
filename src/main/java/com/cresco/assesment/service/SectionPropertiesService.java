@@ -3,7 +3,7 @@ package com.cresco.assesment.service;
 import java.util.List;
 
 import com.cresco.assesment.model.SectionProperties;
-import com.cresco.assesment.model.models.Section;
+import com.cresco.assesment.vo.Section;
 
 public interface SectionPropertiesService {
 public List<SectionProperties> getAllSections();

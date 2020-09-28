@@ -1,4 +1,6 @@
-package com.cresco.assesment.model.models;
+package com.cresco.assesment.vo;
+
+import java.util.List;
 
 import javax.persistence.Column;
 
@@ -13,17 +15,18 @@ public class Question {
 	private String question_type;
 	private String answer_type;
 	private Long no_of_options;
-	
-	private Score score;
+	private int mark;
+	private int negative_mark;
 	private Long timer;
 	
 	private Logic logic_jump;
 	private String question_q;
 
-	private QOptions options;
+	private List<String> options;
 	private Long question_no;
 	private Long assessment_id;
 	private Long section_id;
+	private List<String> answer;
 	public Long getQuestion_id() {
 		return question_id;
 	}
@@ -48,12 +51,6 @@ public class Question {
 	public void setNo_of_options(Long no_of_options) {
 		this.no_of_options = no_of_options;
 	}
-	public Score getScore() {
-		return score;
-	}
-	public void setScore(Score score) {
-		this.score = score;
-	}
 	public Long getTimer() {
 		return timer;
 	}
@@ -72,12 +69,6 @@ public class Question {
 	public void setQuestion_q(String question_q) {
 		this.question_q = question_q;
 	}
-	public QOptions getOptions() {
-		return options;
-	}
-	public void setOptions(QOptions options) {
-		this.options = options;
-	}
 	public Long getQuestion_no() {
 		return question_no;
 	}
@@ -95,6 +86,31 @@ public class Question {
 	}
 	public void setSection_id(Long section_id) {
 		this.section_id = section_id;
+	}
+	
+	public List<String> getAnswer() {
+		return answer;
+	}
+	public void setAnswer(List<String> answer) {
+		this.answer = answer;
+	}
+	public List<String> getOptions() {
+		return options;
+	}
+	public void setOptions(List<String> options) {
+		this.options = options;
+	}
+	public int getNegative_mark() {
+		return negative_mark;
+	}
+	public void setNegative_mark(int negative_mark) {
+		this.negative_mark = negative_mark;
+	}
+	public int getMark() {
+		return mark;
+	}
+	public void setMark(int mark) {
+		this.mark = mark;
 	}
 	
 }

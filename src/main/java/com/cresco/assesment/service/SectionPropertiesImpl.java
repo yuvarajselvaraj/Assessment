@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.cresco.assesment.model.AssesmentProperties;
 import com.cresco.assesment.model.SectionProperties;
-import com.cresco.assesment.model.models.Section;
 import com.cresco.assesment.repository.QuestionPropertiesRepo;
 import com.cresco.assesment.repository.SectionPropertiesRepo;
+import com.cresco.assesment.vo.Section;
 
 @Service
 public class SectionPropertiesImpl implements SectionPropertiesService {

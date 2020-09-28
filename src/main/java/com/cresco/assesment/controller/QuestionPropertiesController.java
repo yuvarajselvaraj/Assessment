@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cresco.assesment.model.QuestionProperties;
-import com.cresco.assesment.model.models.Question;
 import com.cresco.assesment.service.QuestionProertiesImpl;
+import com.cresco.assesment.vo.Question;
 
 @RestController
 @CrossOrigin

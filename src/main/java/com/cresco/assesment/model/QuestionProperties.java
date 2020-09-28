@@ -42,6 +42,9 @@ public class QuestionProperties implements Serializable {
 	@Type(type = "jsonb")
 	@Column(columnDefinition="json")
 	private Logic logic_jump;
+	@Type(type = "jsonb")
+	@Column(columnDefinition="json")
+	private QOptions answer;
 	private String question_q;
 	@Type(type = "jsonb")
 	@Column(columnDefinition="json")
@@ -55,6 +58,13 @@ public class QuestionProperties implements Serializable {
 	@JoinColumn(name="section_id")
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	private SectionProperties foreign_key2;
+	
+	public QOptions getAnswer() {
+		return answer;
+	}
+	public void setAnswer(QOptions answer) {
+		this.answer = answer;
+	}
 	public Long getQuestion_id() {
 		return question_id;
 	}

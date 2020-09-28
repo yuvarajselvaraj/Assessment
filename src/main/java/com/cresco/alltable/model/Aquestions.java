@@ -18,7 +18,7 @@ public class Aquestions implements Serializable{
 	private Long question_no;
 	private Long section_id;
 	private Long assessment_id;
-	
+	private QOptions answer;
 	public Long getSection_id() {
 		return section_id;
 	}
@@ -90,6 +90,12 @@ public class Aquestions implements Serializable{
 	}
 	public void setQuestion_no(Long question_no) {
 		this.question_no = question_no;
+	}
+	public QOptions getAnswer() {
+		return answer;
+	}
+	public void setAnswer(QOptions answer) {
+		this.answer = answer;
 	}
 	
 }

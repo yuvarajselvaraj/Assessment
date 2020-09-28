@@ -1,4 +1,4 @@
-package com.cresco.assesment.model.models;
+package com.cresco.assesment.vo;
 
 public class Section {
 	private Long section_id;

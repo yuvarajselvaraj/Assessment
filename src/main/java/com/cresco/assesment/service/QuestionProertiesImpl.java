@@ -6,11 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cresco.assesment.json.QOptions;
+import com.cresco.assesment.json.Score;
 import com.cresco.assesment.model.AssesmentProperties;
 import com.cresco.assesment.model.QuestionProperties;
 import com.cresco.assesment.model.SectionProperties;
-import com.cresco.assesment.model.models.Question;
 import com.cresco.assesment.repository.QuestionPropertiesRepo;
+import com.cresco.assesment.vo.Question;
 @Service
 public class QuestionProertiesImpl implements QuestionPropertiesService {
 @Autowired
@@ -35,12 +37,20 @@ QuestionPropertiesRepo repo;
 		model1.setAnswer_type(model.getAnswer_type());
 		model1.setLogic_jump(model.getLogic_jump());
 		model1.setNo_of_options(model.getNo_of_options());
-		model1.setOptions(model.getOptions());
+		QOptions n=new QOptions();
+		n.setOptions(model.getOptions());
+		model1.setOptions(n);
 		model1.setQuestion_id(model.getQuestion_id());
 		model1.setQuestion_no(model.getQuestion_no());
 		model1.setQuestion_q(model.getQuestion_q());
 		model1.setQuestion_type(model.getQuestion_type());
-		model1.setScore(model.getScore());
+		Score sc=new Score();
+		sc.setMark(model.getMark());
+		sc.setNegativeMark(model.getNegative_mark());
+		model1.setScore(sc);
+		QOptions n1=new QOptions();
+		n1.setOptions(model.getAnswer());
+		model1.setAnswer(n1);
 		model1.setTimer(model.getTimer());
 		AssesmentProperties ap=new AssesmentProperties();
 		ap.setAssessment_id(model.getAssessment_id());
